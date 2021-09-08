@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Req} from '@nestjs/common';
+import { Controller, Get, Query, Req, HttpException, HttpStatus} from '@nestjs/common';
 import { Request } from 'express';
 
 //Generic HealthCheck
@@ -14,4 +14,8 @@ export class AppController {
   //access request/response headers
   @Get('/headers')
   getHeaders(@Req() req: Request): any { return {headers: req.headers} }
+
+  //return HTTP error
+  @Get('/forbidden')
+  getForbidden(): any { throw new HttpException({ msg: 'You have no permissions' }, HttpStatus.FORBIDDEN); }
 }
