@@ -1,13 +1,24 @@
 import { Module } from '@nestjs/common';
 import { AppController } from 'src/interfaces/app.controller';
-import { OrderController } from 'src/interfaces/orders.controller';
-import { OrderQueryService } from 'src/application/queryServices/order.query.service';
-import { OrderCommandService } from 'src/application/commandServices/order.command.service';
-import { OrderRepository } from 'src/infrastructure/repository/order.repository';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
+import { OrderModule } from './modules/order.module';
+const {getEnv} = require('./environment')
 
+console.log(getEnv())
 @Module({
-  imports: [],
-  controllers: [AppController, OrderController],
-  providers: [OrderQueryService, OrderCommandService],
+  imports: [
+    OrderModule,
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      url: getEnv().mongo_url,
+      entities: [join(__dirname, '**/entities/**{.ts,.js}')],
+      synchronize: true,
+      useNewUrlParser: true,
+      logging: true,
+    })
+  ],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}

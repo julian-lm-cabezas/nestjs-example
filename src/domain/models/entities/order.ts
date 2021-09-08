@@ -1,9 +1,15 @@
-import { OrderLine } from "../vos/orderLine";
+import { Entity, Column, ObjectIdColumn } from 'typeorm';
 
-export interface Order {
-    id: string,
+@Entity({name: "nestExampleOrders"})
+export class Order {
+    @ObjectIdColumn()
+    _id: string
+    @Column()
     orderNumber: number;
+    @Column()
     storeCode: number;
+    @Column()
     orderType: string;
-    orderLines: OrderLine[];
+    /*@Column()
+    orderLines: OrderLine[];*/
 }

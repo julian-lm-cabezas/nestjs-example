@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Order } from 'src/domain/models/entities/order'
-import { OrderRepository} from 'src/infrastructure/repository/order.repository'
-
+import { InjectRepository } from '@nestjs/typeorm';
+import { OrderRepository } from 'src/infrastructure/repository/order.repository';
 @Injectable()
 export class OrderQueryService {
     
-    constructor(@InjectRepository orderRepository: OrderRepository){}
+    constructor(private orderRepository: OrderRepository){}
 
-    findAll = async (): Promise<Order[]> => this.orderRepository.findAll()
+    findAll = async (): Promise<Order[]> => this.orderRepository.find()
     
-    findById = async (id: string): Promise<Order> => this.orderRepository.findById(id)
+    findById = async (id: string): Promise<Order> => this.orderRepository.findOne(id)
 }
