@@ -3,19 +3,23 @@ import { AppController } from 'src/interfaces/app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { OrderModule } from './modules/order.module';
+import { Order } from 'src/domain/models/entities/order';
 const {getEnv} = require('./environment')
 
-console.log(getEnv())
 @Module({
   imports: [
     OrderModule,
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url: getEnv().mongo_url,
-      entities: [join(__dirname, '**/entities/**{.ts,.js}')],
+      entities: [Order],
       synchronize: true,
       useNewUrlParser: true,
       logging: true,
+      /*extra: {
+        //ssl: 'true',
+        authSource: 'admin'
+      },*/
     })
   ],
   controllers: [AppController],
