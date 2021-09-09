@@ -1,4 +1,5 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm';
+import { OrderLine } from '../vos/orderLine';
 
 @Entity({name: "nestExampleOrders"})
 export class Order {
@@ -10,6 +11,6 @@ export class Order {
     storeCode: number;
     @Column()
     orderType: string;
-    /*@Column()
-    orderLines: OrderLine[];*/
+    @Column()
+    lines: OrderLine[];
 }
