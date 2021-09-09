@@ -1,7 +1,11 @@
 import {Controller, Get, Post, Put, Delete, Param, Body} from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger';
 import { OrderQueryService } from 'src/application/queryServices/order.query.service'
 import { OrderCommandService } from 'src/application/commandServices/order.command.service'
 import { Order } from 'src/domain/models/entities/order'
+
+// use ApiTags to include controller calls under swagger Tag
+@ApiTags('orders')
 @Controller('orders')
 export class OrderController {
 
