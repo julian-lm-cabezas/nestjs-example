@@ -1,6 +1,6 @@
 export class OrderLine {
     productCode: string;
-    //ean: string;
+    ean: string;
     productDesignation: string;
     quantity: number;
 }
