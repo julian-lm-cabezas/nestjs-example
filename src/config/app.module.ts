@@ -15,6 +15,7 @@ const {getEnv} = require('./environment')
       entities: [Order],
       synchronize: true,
       useNewUrlParser: true,
+      useUnifiedTopology:true,
       logging: true,
       /*extra: {
         //ssl: 'true',

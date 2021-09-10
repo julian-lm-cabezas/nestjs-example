@@ -1,13 +1,14 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm';
 import { OrderLine } from '../vos/orderLine';
 import { ApiProperty } from '@nestjs/swagger';
+import { LMESEntity } from 'src/utils/LMESEntity';
 
 @Entity({name: "nestExampleOrders"})
-export class Order {
+export class Order extends LMESEntity{
     //add Api property to show attributes in Schema
-    @ApiProperty()
+    /*@ApiProperty()
     @ObjectIdColumn()
-    _id: string
+    _id: string*/
     @ApiProperty()
     @Column()
     orderNumber: number;

@@ -3,29 +3,30 @@ import { ApiTags } from '@nestjs/swagger';
 import { OrderQueryService } from 'src/application/queryServices/order.query.service'
 import { OrderCommandService } from 'src/application/commandServices/order.command.service'
 import { Order } from 'src/domain/models/entities/order'
+import { LMESCommandController, LMESQueryController } from 'src/utils/LMESRestController';
 
 // use ApiTags to include controller calls under swagger Tag
 @ApiTags('orders')
 @Controller('orders')
-export class OrderController {
+export class OrderController implements LMESQueryController<Order>, LMESCommandController<Order>{
 
     constructor(private queryService: OrderQueryService, private commandService: OrderCommandService) {}
-    //Path as GET /orders
+    
     @Get()
-    async getAll(): Promise<Order[]>{ return this.queryService.findAll() }
-    //Path with parameter as GET /orders/{orderNumber}
+    async findAll(): Promise<Order[]>{ return this.queryService.findAll() }
     @Get(':id')
-    async getByOrderNumber(@Param('id') id: string): Promise<Order>{ return this.queryService.findById(id) }
-    // Path with Body as POST /orders
+    async findOne(@Param('id') id: string): Promise<Order>{ return this.queryService.findById(id) }
+   
+    findByCriteria(query: any): Promise<Order[]>{ return null }
+
     @Post()
-    async saveOrder(@Body() order: Order): Promise<Order>{ return this.commandService.saveOrder(order) }
-
+    async insertOne(order: Order): Promise<Order>{ return this.commandService.insertOne(order) }
     @Put()
-    async updateOrder(@Body() order: Order): Promise<Order>{ return this.commandService.updateOrder(order) }
-
-    @Delete(':id')
-    async deleteByOrderNumber(@Param('id') id: string): Promise<boolean>{ 
-        await this.commandService.deleteOrder(id) 
+    updateOne(@Body() order: Order): Promise<Order>{ return this.commandService.updateOne(order) }
+    
+    @Delete()
+    async deleteOne(@Param('id') id: string): Promise<boolean>{ 
+        await this.commandService.deleteOne(id) 
         return true
     }
 }

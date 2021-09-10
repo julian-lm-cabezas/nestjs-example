@@ -8,7 +8,6 @@ const { getEnv }  = require('./config/environment')
 const bootstrap = async ()=> {
   const app = await NestFactory.create(AppModule);
   
-  console.log(pack)
   const config = new DocumentBuilder()
     .setTitle(pack.name)
     .setDescription(pack.description)
