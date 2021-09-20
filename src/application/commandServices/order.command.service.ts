@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Order } from 'src/domain/models/entities/order'
-import { OrderRepository } from 'src/infrastructure/repository/order.repository';
-import { LMESCommandService } from 'src/utils/LMESService';
+import { Order } from '../../domain/models/entities/order'
+import { OrderRepository } from '../../infrastructure/repository/order.repository';
+import { LMESCommandService } from '../../utils/LMESService';
 @Injectable()
 export class OrderCommandService implements LMESCommandService<Order>{
 

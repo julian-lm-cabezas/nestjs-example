@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Order } from 'src/domain/models/entities/order'
-import { InjectRepository } from '@nestjs/typeorm';
-import { OrderRepository } from 'src/infrastructure/repository/order.repository';
-import { LMESQueryService } from 'src/utils/LMESService';
+import { Order } from '../../domain/models/entities/order'
+import { OrderRepository } from '../../infrastructure/repository/order.repository';
+import { LMESQueryService } from '../../utils/LMESService';
 @Injectable()
 export class OrderQueryService implements LMESQueryService<Order>{
     

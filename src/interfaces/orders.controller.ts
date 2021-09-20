@@ -1,9 +1,9 @@
 import {Controller, Get, Post, Put, Delete, Param, Body} from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger';
-import { OrderQueryService } from 'src/application/queryServices/order.query.service'
-import { OrderCommandService } from 'src/application/commandServices/order.command.service'
-import { Order } from 'src/domain/models/entities/order'
-import { LMESCommandController, LMESQueryController } from 'src/utils/LMESRestController';
+import { OrderQueryService } from '../application/queryServices/order.query.service'   ///application/queryServices/order.query.service'
+import { OrderCommandService } from '../application/commandServices/order.command.service'
+import { Order } from '../domain/models/entities/order'
+import { LMESCommandController, LMESQueryController } from '../utils/LMESRestController';
 
 // use ApiTags to include controller calls under swagger Tag
 @ApiTags('orders')

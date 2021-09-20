@@ -1,7 +1,7 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm';
 import { OrderLine } from '../vos/orderLine';
 import { ApiProperty } from '@nestjs/swagger';
-import { LMESEntity } from 'src/utils/LMESEntity';
+import { LMESEntity } from '../../../utils/LMESEntity';
 
 @Entity({name: "nestExampleOrders"})
 export class Order extends LMESEntity{
